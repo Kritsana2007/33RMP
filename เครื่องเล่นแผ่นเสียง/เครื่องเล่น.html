@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>33RPM - เครื่องเล่นแผ่นเสียง</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { background-color: #f3f4f6; }
+  </style>
+</head>
+<body class="bg-gray-100 font-sans">
+
+  <header class="bg-white shadow py-4 px-6 flex justify-between items-center sticky top-0 z-10">
+    <h1 class="text-2xl font-bold text-gray-800">
+      <a href="../index.html" class="hover:underline">33RPM</a>
+    </h1>
+    <nav class="space-x-6 flex items-center">
+      <a href="../index.html" class="text-gray-700 hover:text-black">เกี่ยวกับเว็บเรา</a>
+      <a href="../เครื่องเล่นแผ่นเสียง/เครื่องเล่น.html" class="text-gray-700 hover:text-black">เครื่องเล่น</a>
+      <a href="../Music.html" class="text-gray-700 hover:text-black">แผ่นเสียง</a>
+      <a href="../contact.html" class="text-gray-700 hover:text-black">ติดต่อ</a>
+      <button id="cartBtn" class="ml-6 bg-green-500 hover:bg-green-600 text-white rounded-full px-4 py-2 flex items-center transition shadow">
+        <span class="text-xl mr-2">🛒</span>
+        <span id="cartCount" class="font-bold">0</span>
+      </button>
+    </nav>
+  </header>
+
+  <section class="py-16 bg-gray-100">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-4xl font-extrabold text-green-600 mb-12 text-center drop-shadow-md">
+        เครื่องเล่นแผ่นเสียง
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div class="group bg-white rounded-lg shadow-lg p-6 flex flex-col items-center transform transition-transform hover:shadow-xl hover:-translate-y-1">
+          <a href="Audio-Technica AT-LP60XBT.html">
+            <img src="../เครื่องเล่นแผ่นเสียง/รูปเครื่องเล่น/black/2.jpg" alt="Audio-Technica AT-LP60XBT" class="w-64 h-64 object-cover rounded mb-4 border-2 border-gray-200 group-hover:border-green-400 transition-all duration-300 transform group-hover:scale-105">
+          </a>
+          <h3 class="text-xl font-bold text-gray-800 mb-2">Audio-Technica AT-LP60XBT</h3>
+          <p class="text-base text-gray-600 mb-2 text-center h-12 flex items-center justify-center">เครื่องเล่นแผ่นเสียงอัตโนมัติ พร้อม Bluetooth</p>
+          <p class="text-xl font-bold text-green-600 mb-4">ราคา 8,990 บาท</p>
+          <div class="flex flex-wrap justify-center gap-3 w-full">
+            <a href="Audio-Technica AT-LP60XBT.html" class="flex-1 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md shadow transition-colors duration-200 text-center text-sm">ดูรายละเอียด</a>
+            <button class="addToCartBtn flex-1 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md shadow transition-colors duration-200 text-sm" data-name="Audio-Technica AT-LP60XBT" data-price="8990">เพิ่มลงตะกร้า</button>
+          </div>
+        </div>
+        <div class="group bg-white rounded-lg shadow-lg p-6 flex flex-col items-center transform transition-transform hover:shadow-xl hover:-translate-y-1">
+          <a href="../เครื่องเล่นแผ่นเสียง/Sony PS-LX310BT.html">
+            <img src="../เครื่องเล่นแผ่นเสียง/รูปเครื่องเล่น/sony/1.webp" alt="Sony PS-LX310BT" class="w-64 h-64 object-cover rounded mb-4 border-2 border-gray-200 group-hover:border-green-400 transition-all duration-300 transform group-hover:scale-105">
+          </a>
+          <h3 class="text-xl font-bold text-gray-800 mb-2">Sony PS-LX310BT</h3>
+          <p class="text-base text-gray-600 mb-2 text-center h-12 flex items-center justify-center">เครื่องเล่นแผ่นเสียงไร้สาย Bluetooth</p>
+          <p class="text-xl font-bold text-green-600 mb-4">ราคา 8,990 บาท</p>
+          <div class="flex flex-wrap justify-center gap-3 w-full">
+            <a href="../เครื่องเล่นแผ่นเสียง/Sony PS-LX310BT.html" class="flex-1 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md shadow transition-colors duration-200 text-center text-sm">ดูรายละเอียด</a>
+            <button class="addToCartBtn flex-1 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md shadow transition-colors duration-200 text-sm" data-name="Sony PS-LX310BT" data-price="8990">เพิ่มลงตะกร้า</button>
+          </div>
+        </div>
+        <div class="group bg-white rounded-lg shadow-lg p-6 flex flex-col items-center transform transition-transform hover:shadow-xl hover:-translate-y-1">
+          <a href="../เครื่องเล่นแผ่นเสียง/TEAC TN-175.html">
+            <img src="../เครื่องเล่นแผ่นเสียง/รูปเครื่องเล่น/TEAC TN-175/2.jpg" alt="TEAC TN-175" class="w-64 h-64 object-cover rounded mb-4 border-2 border-gray-200 group-hover:border-green-400 transition-all duration-300 transform group-hover:scale-105">
+          </a>
+          <h3 class="text-xl font-bold text-gray-800 mb-2">TEAC TN-175</h3>
+          <p class="text-base text-gray-600 mb-2 text-center h-12 flex items-center justify-center">เครื่องเล่นแผ่นเสียงพร้อม Bluetooth และ RCA</p>
+          <p class="text-xl font-bold text-green-600 mb-4">ราคา 5,900 บาท</p>
+          <div class="flex flex-wrap justify-center gap-3 w-full">
+            <a href="../เครื่องเล่นแผ่นเสียง/TEAC TN-175.html" class="flex-1 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md shadow transition-colors duration-200 text-center text-sm">ดูรายละเอียด</a>
+            <button class="addToCartBtn flex-1 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md shadow transition-colors duration-200 text-sm" data-name="TEAC TN-175" data-price="7500">เพิ่มลงตะกร้า</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <div id="cartModal" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 hidden">
+  <div class="bg-white rounded-2xl p-8 w-full max-w-lg shadow-2xl relative">
+    <button id="closeCart" class="absolute top-4 right-4 text-gray-500 hover:text-black text-2xl">&times;</button>
+    <h2 class="text-2xl font-bold mb-4 text-gray-800">ตะกร้าสินค้า</h2>
+    <ul id="cartList" class="mb-4"></ul>
+    <div class="flex justify-between items-center font-bold text-xl mb-4">
+      <span>รวม</span>
+      <span id="cartTotal">0</span> บาท
+    </div>
+    <button id="checkoutBtn" class="w-full bg-blue-500 hover:bg-blue-600 text-white rounded-full px-4 py-2 transition shadow">
+      ชำระเงิน
+    </button>
+  </div>
+</div>
+
+<script>
+  // ระบบตะกร้า (แชร์ข้ามหน้า)
+  function getCart() {
+    return JSON.parse(localStorage.getItem('cart') || '[]');
+  }
+  function setCart(cart) {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }
+
+  let cart = getCart();
+
+  const cartBtn = document.getElementById('cartBtn');
+  const cartModal = document.getElementById('cartModal');
+  const closeCart = document.getElementById('closeCart');
+  const cartList = document.getElementById('cartList');
+  const cartCount = document.getElementById('cartCount');
+  const cartTotal = document.getElementById('cartTotal');
+  const checkoutBtn = document.getElementById('checkoutBtn');
+
+  // ปุ่มเพิ่มลงตะกร้าทุกปุ่ม
+  document.querySelectorAll('.addToCartBtn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      cart = getCart();
+      cart.push({
+        name: btn.getAttribute('data-name'),
+        price: parseInt(btn.getAttribute('data-price'))
+      });
+      setCart(cart);
+      updateCart();
+    });
+  });
+
+  if (cartBtn) {
+    cartBtn.addEventListener('click', () => {
+      updateCart();
+      cartModal.classList.remove('hidden');
+    });
+  }
+
+  if (closeCart) {
+    closeCart.addEventListener('click', () => {
+      cartModal.classList.add('hidden');
+    });
+  }
+
+  if (checkoutBtn) {
+    checkoutBtn.addEventListener('click', () => {
+      if (cart.length === 0) {
+        alert('กรุณาเลือกสินค้าในตะกร้าก่อนสั่งซื้อ');
+        return;
+      }
+      alert('ขอบคุณสำหรับการสั่งซื้อ!!');
+      cart = [];
+      setCart(cart);
+      updateCart();
+      cartModal.classList.add('hidden');
+    });
+  }
+
+  function updateCart() {
+  cart = getCart();
+  cartCount.textContent = cart.length;
+  cartList.innerHTML = '';
+  let total = 0;
+  cart.forEach((item, idx) => {
+    total += item.price;
+    const li = document.createElement('li');
+    li.className = "flex justify-between items-center border-b py-2";
+    li.innerHTML = `
+      <span>${item.name} - ${item.price.toLocaleString()} บาท</span>
+      <button onclick="removeFromCart(${idx})" class="text-red-500 hover:underline ml-2">ลบ</button>
+    `;
+    cartList.appendChild(li);
+  });
+  cartTotal.textContent = total.toLocaleString();
+}
+
+  window.removeFromCart = function(idx) {
+    cart = getCart();
+    cart.splice(idx, 1);
+    setCart(cart);
+    updateCart();
+  };
+
+  // โหลดจำนวนสินค้าในตะกร้าทันทีเมื่อเข้าเว็บ
+  updateCart();
+</script>
+
+
+  <section id="contact" class="bg-gradient-to-br from-gray-50 to-white py-16 px-6 text-center">
+    <h2 class="text-4xl font-extrabold mb-8 text-green-600 drop-shadow-md">ติดต่อเรา</h2>
+    <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8 text-xl text-gray-700">
+      <p class="flex items-center justify-center">
+        <span class="text-green-600 text-2xl mr-2"></span> 
+        อีเมล: 66209010004@tatc.ac.th | โทร: 065-454-7052
+      </p>
+      
+  </section>
+
+
+  <footer class="bg-black text-white text-center py-5 text-sm">
+    33RPM
+  </footer>
+</body>
+</html>
