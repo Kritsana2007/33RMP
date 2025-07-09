@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>เลือกหมวดหมู่เพลง - 33RPM</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* เพิ่ม transition ให้ body สำหรับการเปลี่ยนสีพื้นหลังถ้ามีการเปลี่ยนแปลง */
+    body {
+      transition: background-color 0.3s ease;
+    }
+  </style>
+</head>
+<body class="bg-gray-900 font-sans text-white">
+
+  <header class="bg-gray-800 shadow py-4 px-6 flex justify-between items-center sticky top-0 z-10">
+  <h1 class="text-2xl font-bold text-green-400">
+    <a href="index.html" class="hover:underline">33RPM</a>
+  </h1>
+  <nav class="space-x-6 flex items-center">
+    <a href="index.html" class="text-gray-200 hover:text-green-400">เกี่ยวกับเว็บเรา</a>
+    <a href="เครื่องเล่นแผ่นเสียง/เครื่องเล่น.html" class="text-gray-200 hover:text-green-400">เครื่องเล่น</a>
+    <a href="Music.html" class="text-gray-200 hover:text-green-400">แผ่นเสียง</a>
+    <a href="contact.html" class="text-gray-200 hover:text-green-400">ติดต่อ</a>
+    <button id="cartBtn" class="ml-6 bg-green-500 hover:bg-green-600 text-white rounded-full px-4 py-2 flex items-center transition shadow">
+      <span class="text-xl mr-2">🛒</span>
+      <span id="cartCount" class="font-bold">0</span>
+    </button>
+  </nav>
+</header>
+
+<section class="py-24 bg-gradient-to-br from-gray-800 via-gray-900 to-black text-center min-h-[70vh] flex flex-col justify-center">
+  <h2 class="text-4xl font-extrabold mb-10 text-green-400 drop-shadow">เลือกหมวดหมู่เพลง</h2>
+  <div class="flex flex-col sm:flex-row items-center justify-center gap-10">
+
+    <a href="English/English.html" class="group relative bg-gradient-to-r from-gray-700 to-gray-800 hover:from-green-600 hover:to-green-700 text-white text-xl font-bold py-8 px-12 rounded-2xl shadow-xl transition-all duration-300 w-72 flex flex-col items-center transform hover:-translate-y-2 group-hover:ring-4 group-hover:ring-green-400 group-hover:ring-opacity-75">
+      <img src="1.png" alt="เพลงอังกฤษ" class="w-24 h-24 object-cover rounded-full mb-4 border-4 border-gray-300 shadow-lg group-hover:scale-110 group-hover:border-green-400 transition">
+      เพลงอังกฤษ
+    </a>
+
+    <a href="Thai/Thai.html" class="group relative bg-gradient-to-r from-gray-700 to-gray-800 hover:from-green-600 hover:to-green-700 text-white text-xl font-bold py-8 px-12 rounded-2xl shadow-xl transition-all duration-300 w-72 flex flex-col items-center transform hover:-translate-y-2 group-hover:ring-4 group-hover:ring-green-400 group-hover:ring-opacity-75">
+      <img src="1.png" alt="เพลงไทย" class="w-24 h-24 object-cover rounded-full mb-4 border-4 border-gray-300 shadow-lg group-hover:scale-110 group-hover:border-green-400 transition">
+      เพลงไทย
+    </a>
+
+    <a href="Janpan/japanese.html" class="group relative bg-gradient-to-r from-gray-700 to-gray-800 hover:from-green-600 hover:to-green-700 text-white text-xl font-bold py-8 px-12 rounded-2xl shadow-xl transition-all duration-300 w-72 flex flex-col items-center transform hover:-translate-y-2 group-hover:ring-4 group-hover:ring-green-400 group-hover:ring-opacity-75">
+      <img src="1.png" alt="เพลงญี่ปุ่น" class="w-24 h-24 object-cover rounded-full mb-4 border-4 border-gray-300 shadow-lg group-hover:scale-110 group-hover:border-green-400 transition">
+      เพลงญี่ปุ่น
+    </a>
+
+  </div>
+</section>
+
+<div id="cartModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+  <div class="bg-gray-800 rounded-3xl shadow-2xl p-8 max-w-lg w-full text-gray-200">
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-2xl font-bold text-green-400">ตะกร้าสินค้า</h2>
+      <button id="closeCart" class="text-gray-400 hover:text-gray-200 text-3xl">&times;</button>
+    </div>
+    <ul id="cartList" class="list-disc list-inside text-gray-300 mb-6 pl-6">
+      </ul>
+    <div class="grid grid-cols-3 items-center text-xl font-semibold text-gray-200 mb-4 text-center">
+      <div class="text-left">รวม</div>
+      <div id="cartTotal" class="text-green-400 text-2xl font-bold">0</div>
+      <div class="text-right">บาท</div>
+    </div>
+    <div class="mt-6">
+      <button id="checkoutBtn" class="w-full bg-green-500 hover:bg-green-600 text-white rounded-2xl px-4 py-3 transition text-lg font-bold">
+        ชำระเงิน
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  function getCart() {
+    return JSON.parse(localStorage.getItem('cart') || '[]');
+  }
+  function setCart(cart) {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }
+
+  let cart = getCart();
+  const cartBtn = document.getElementById('cartBtn');
+  const cartModal = document.getElementById('cartModal');
+  const closeCart = document.getElementById('closeCart');
+  const cartList = document.getElementById('cartList');
+  const cartCount = document.getElementById('cartCount');
+  const cartTotal = document.getElementById('cartTotal');
+  const checkoutBtn = document.getElementById('checkoutBtn');
+
+  if (cartBtn) {
+    cartBtn.addEventListener('click', () => {
+      updateCart();
+      cartModal.classList.remove('hidden');
+    });
+  }
+
+  if (closeCart) {
+    closeCart.addEventListener('click', () => {
+      cartModal.classList.add('hidden');
+    });
+  }
+
+  if (checkoutBtn) {
+    checkoutBtn.addEventListener('click', () => {
+      if (cart.length === 0) {
+        alert('กรุณาเพิ่มสินค้าในตะกร้าก่อนชำระเงิน');
+        return;
+      }
+      alert('ขอบคุณสำหรับการสั่งซื้อ!');
+      setCart([]);
+      updateCart();
+      cartModal.classList.add('hidden');
+    });
+  }
+
+  function updateCart() {
+    cart = getCart();
+    cartCount.textContent = cart.length;
+    cartList.innerHTML = '';
+    let total = 0;
+    cart.forEach((item, idx) => {
+      total += item.price;
+      const li = document.createElement('li');
+      li.className = "flex justify-between items-center border-b py-2";
+      li.innerHTML = `
+        <span>${item.name} - ${item.price.toLocaleString()} บาท</span>
+        <button onclick="removeFromCart(${idx})" class="text-red-500 hover:underline ml-2">ลบ</button>
+      `;
+      cartList.appendChild(li);
+    });
+    cartTotal.textContent = total.toLocaleString();
+  }
+
+  window.removeFromCart = function(idx) {
+    cart = getCart();
+    cart.splice(idx, 1);
+    setCart(cart);
+    updateCart();
+  };
+
+  updateCart();
+</script>
+
+  <section id="contact" class="bg-gray-800 py-16 px-6 text-center">
+    <h2 class="text-3xl font-bold mb-6 text-green-400">ติดต่อเรา</h2>
+    <p class="text-gray-200 text-lg">อีเมล: 66209010004@tatc.ac.th | โทร: 065-454-7052</p>
+  </section>
+
+ <footer class="bg-black text-white text-center py-5 text-sm">
+    33RPM
+  </footer>
+  
+</body>
+</html>
