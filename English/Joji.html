@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>33RPM - ร้านแผ่นเสียงไวนิล</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .spinning {
+      animation: spin 5s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    #vinyl {
+      box-shadow:
+        inset 0 0 30px 10px rgba(33, 33, 33, 0.8),
+        0 8px 15px rgba(0, 0, 0, 0.6);
+      background: radial-gradient(circle at center, #222 30%, #000 90%);
+      border: 8px solid #111;
+      transition: box-shadow 0.3s ease, transform 0.5s ease;
+      position: relative;
+      border-radius: 50%;
+    }
+
+    #vinyl:hover {
+      box-shadow:
+        inset 0 0 40px 15px rgba(0, 0, 0, 0.9),
+        0 12px 20px rgba(0, 0, 0, 0.8);
+      transform: scale(1.05);
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 font-sans">
+
+  <!-- Header -->
+  <header class="bg-white shadow py-4 px-6 flex justify-between items-center sticky top-0 z-10">
+    <h1 class="text-2xl font-bold text-gray-800">
+      <a href="../index.html" class="hover:underline">33RPM</a>
+    </h1>
+    <nav class="space-x-6 flex items-center">
+      <a href="../index.html" class="text-gray-700 hover:text-black">เกี่ยวกับเว็บเรา</a>
+      <a href="../เครื่องเล่นแผ่นเสียง/เครื่องเล่น.html" class="text-gray-700 hover:text-black">เครื่องเล่น</a>
+      <a href="../Music.html" class="text-gray-700 hover:text-black">แผ่นเสียง</a>
+      <a href="../contact.html" class="text-gray-700 hover:text-black">ติดต่อ</a>
+      <!-- ปุ่มตะกร้า -->
+      <button id="cartBtn" class="ml-6 bg-green-500 hover:bg-green-600 text-white rounded-full px-4 py-2 flex items-center transition shadow">
+        <span class="text-xl mr-2">🛒</span>
+        <span id="cartCount" class="font-bold">0</span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- ฟังตัวอย่างเพลง -->
+  <section class="flex flex-col items-center justify-center py-20 bg-black text-white">
+    <div class="flex flex-col lg:flex-row items-start justify-center gap-8 max-w-6xl w-full mx-auto px-6">
+      
+      <!-- ฝั่งซ้าย: รายละเอียดแผ่นเสียง -->
+      <div class="flex-1 max-w-lg">
+        <div class="bg-gray-900 p-8 rounded-lg shadow-lg">
+          <h3 class="text-2xl font-semibold mb-5 border-b border-green-500 pb-3">รายละเอียดแผ่นเสียง</h3>
+          <p class="text-gray-300 leading-relaxed whitespace-pre-line text-lg">
+            ชื่ออัลบั้ม : Smithereens Black<br>
+            รหัส : 88rising – 093624864592, Warner Records – 093624864592
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;01. A1 Glimpse Of Us
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;02. A2 Feeling Like The End
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;03. A3 Die For You
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;04. A4 Before The Day Is Over
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;05. A5 Dissolve
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;06. B1 Night Rider
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;07. B2 Blahblahblah Demo
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;08. B3 Yukon (Interlude)
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;09. B4 1AM Freestyle
+            <br />ศิลปิน : Joji
+            <br />ค่าย : 88rising
+            <br />ประเภท : แผ่นเสียงไวนิล
+            <br />จำนวนแผ่น : 2 แผ่น
+            <br />ความเร็ว : 33 RPM
+            <br />ขนาด : 12 นิ้ว
+            <br />น้ำหนัก : 180 กรัม
+            <br />สี : สีเขียว
+            <br />บันทึกเสียง : 24-bit/192kHz
+            <br />รูปแบบ : 2 แทร็ก
+            <br />วางจำหน่าย : 2023
+            <br />ราคา : 1,890 บาท
+          </p>
+        </div>
+      </div>
+
+      <!-- ฝั่งขวา: โปสเตอร์ + แผ่นเสียง + ปรับเสียง -->
+      <div class="flex flex-col items-center gap-6 w-full lg:w-auto">
+        <h2 class="text-3xl font-bold mb-3">สินค้า</h2>
+
+        <!-- โปสเตอร์ -->
+        <div class="relative w-80 h-auto shadow-lg rounded overflow-hidden">
+          <img id="posterImage"
+               src="../English/โปสเตอร์/Joji/1.webp"
+               alt="โปสเตอร์อัลบั้ม"
+               class="w-full h-auto object-cover rounded" />
+          <button id="prevPoster"
+                  class="absolute left-0 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-white px-4 py-2 rounded-r hover:bg-opacity-75 transition">
+            ◀
+          </button>
+          <button id="nextPoster"
+                  class="absolute right-0 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-white px-4 py-2 rounded-l hover:bg-opacity-75 transition">
+            ▶
+          </button>
+        </div>
+
+        <h3 class="text-xl font-semibold mt-2 mb-1">ตัวอย่างเพลง</h3>
+
+        <!-- แผ่นเสียง -->
+        <div class="relative w-64 h-64" id="vinylWrapper">
+          <img id="vinyl"
+               src="../English/ไวนิล/4.png"
+               alt="แผ่นเสียง"
+               class="w-full h-full object-cover transition-transform duration-500" />
+        </div>
+
+        <!-- ตัวปรับเสียง -->
+        <div class="w-48 mt-4">
+          <input type="range" id="volumeControl" min="0" max="1" step="0.01" value="0.5" class="w-full">
+        </div>
+
+        <!-- ปุ่มตะกร้าและสั่งซื้อ ด้านล่างสุด เว้นระยะห่าง -->
+        <div class="flex flex-col sm:flex-row gap-4 w-full justify-center mt-10 max-w-xs">
+          <button id="addToCartBtn" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded transition shadow-lg w-full sm:w-auto">
+            เพิ่มลงตะกร้า
+          </button>
+          <button class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded transition shadow-lg w-full sm:w-auto">
+            สั่งซื้อเลย
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- เพลง -->
+    <audio id="audio" src="../English/music/4.mp3"></audio>
+  </section>
+
+  <!-- ติดต่อ -->
+  <section id="contact" class="bg-white py-16 px-6 text-center">
+    <h2 class="text-3xl font-bold mb-6">ติดต่อเรา</h2>
+    <p class="text-gray-700 text-lg">อีเมล: 66209010004@tatc.ac.th | โทร: 065-454-7052</p>
+  </section>
+
+    <!-- Footer -->
+  <footer class="bg-black text-white text-center py-5 text-sm">
+    33RPM
+  </footer>
+
+  <!-- ตะกร้าสินค้า Modal -->
+  <div id="cartModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-20 hidden">
+    <div class="bg-white rounded-3xl shadow-2xl p-8 max-w-lg w-full">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-bold text-gray-800">ตะกร้าสินค้า</h2>
+        <button id="closeCart" class="text-gray-500 hover:text-gray-700 text-3xl">&times;</button>
+      </div>
+      <ul id="cartList" class="list-disc list-inside text-gray-700 mb-6 pl-6">
+        <!-- รายการสินค้าในตะกร้าจะถูกเพิ่มที่นี่โดย JavaScript -->
+      </ul>
+      <div class="grid grid-cols-3 items-center text-xl font-semibold text-gray-800 mb-4 text-center">
+  <div class="text-left">รวม</div>
+  <div id="cartTotal" class="text-black text-2xl font-bold">0</div>
+  <div class="text-right">บาท</div>
+</div>
+      <div class="mt-6">
+       <button id="checkoutBtn" class="w-full bg-green-500 hover:bg-green-600 text-white rounded-2xl px-4 py-3 transition text-lg font-bold">
+  ชำระเงิน
+</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Script -->
+  <script>
+    const vinyl = document.getElementById('vinyl');
+    const vinylWrapper = document.getElementById('vinylWrapper');
+    const audio = document.getElementById('audio');
+    const volumeControl = document.getElementById('volumeControl');
+    const posterImage = document.getElementById('posterImage');
+    const prevPoster = document.getElementById('prevPoster');
+    const nextPoster = document.getElementById('nextPoster');
+
+    const posterImages = [
+      "../English/โปสเตอร์/Joji/1.webp",
+      "../English/โปสเตอร์/Joji/2.webp",
+    ];
+    let currentPosterIndex = 0;
+
+    // เล่น/หยุดเพลงเมื่อคลิกที่แผ่นเสียง
+    vinylWrapper.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        vinyl.classList.add('spinning');
+      } else {
+        audio.pause();
+        vinyl.classList.remove('spinning');
+      }
+    });
+
+    // ปรับระดับเสียง
+    volumeControl.addEventListener('input', () => {
+      audio.volume = volumeControl.value;
+    });
+
+    // สลับโปสเตอร์
+    prevPoster.addEventListener('click', () => {
+      currentPosterIndex = (currentPosterIndex - 1 + posterImages.length) % posterImages.length;
+      posterImage.src = posterImages[currentPosterIndex];
+    });
+
+    nextPoster.addEventListener('click', () => {
+      currentPosterIndex = (currentPosterIndex + 1) % posterImages.length;
+      posterImage.src = posterImages[currentPosterIndex];
+    });
+
+    // ระบบตะกร้า (แชร์ข้ามหน้า)
+function getCart() {
+  return JSON.parse(localStorage.getItem('cart') || '[]');
+}
+function setCart(cart) {
+  localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+let cart = getCart();
+
+const addToCartBtn = document.getElementById('addToCartBtn');
+const cartBtn = document.getElementById('cartBtn');
+const cartModal = document.getElementById('cartModal');
+const closeCart = document.getElementById('closeCart');
+const cartList = document.getElementById('cartList');
+const cartCount = document.getElementById('cartCount');
+const cartTotal = document.getElementById('cartTotal');
+
+if (addToCartBtn) {
+  addToCartBtn.addEventListener('click', () => {
+    cart = getCart();
+    cart.push({
+      name: 'Smithereens Black',
+      price: 1890
+    });
+    setCart(cart);
+    updateCart();
+  });
+}
+
+cartBtn.addEventListener('click', () => {
+  updateCart();
+  cartModal.classList.remove('hidden');
+});
+
+closeCart.addEventListener('click', () => {
+  cartModal.classList.add('hidden');
+});
+
+function updateCart() {
+  cart = getCart();
+  cartCount.textContent = cart.length;
+  cartList.innerHTML = '';
+  let total = 0;
+  cart.forEach((item, idx) => {
+    total += item.price;
+    const li = document.createElement('li');
+    li.className = "flex justify-between items-center border-b py-2";
+    li.innerHTML = `
+      <span>${item.name} - ${item.price.toLocaleString()} บาท</span>
+      <button onclick="removeFromCart(${idx})" class="text-red-500 hover:underline ml-2">ลบ</button>
+    `;
+    cartList.appendChild(li);
+  });
+  cartTotal.textContent = total.toLocaleString();
+}
+  window.removeFromCart = function(idx) {
+    cart = getCart();
+    cart.splice(idx, 1);
+    setCart(cart);
+    updateCart();
+  };
+
+  // โหลดจำนวนสินค้าในตะกร้าทันทีเมื่อเข้าเว็บ
+  updateCart();
+
+// ✅ โค้ดที่ถูกต้องและใช้งานได้
+const checkoutBtn = document.getElementById('checkoutBtn');
+if (checkoutBtn) {
+  checkoutBtn.addEventListener('click', () => {
+    const cart = getCart();
+    if (cart.length === 0) {
+      alert('กรุณาเลือกสินค้าในตะกร้าก่อนสั่งซื้อ');
+      return;
+    }
+
+    alert('ซื้อสินค้าสำเร็จ!!');
+    localStorage.removeItem('cart'); // เคลียร์ตะกร้า
+    updateCart(); // รีเฟรชตะกร้า
+    cartModal.classList.add('hidden'); // ปิด modal
+  });
+}
+
+// โหลดจำนวนสินค้าในตะกร้าทันทีเมื่อเข้าเว็บ
+updateCart();
+  </script>
+</body>
+</html>
